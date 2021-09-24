@@ -20,7 +20,9 @@ Welcome to F.L.O.A.T. an image recognition AI system that detects litter below t
   * Front end lead
 
 ## Video updates 
-These updates are to present our progress as we develop our project
+These updates are to present our progress as we develop our project. 
+<br> 
+<br>
 [Vlog1: introduction](https://www.youtube.com/watch?v=Napoui65yjI) September 17, 2021
 
 ## Notes
