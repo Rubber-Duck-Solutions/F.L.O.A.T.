@@ -1,0 +1,13 @@
+For our affinity map, we split our project ideas into different aspects:
+1. UI - Ideas for what we want for the user interface that we/others will interact with
+2. AI - Ideas for what we will use to operate and train our AI
+3. Design - Ideas for our physical and software design concepts of the project
+4. Planning - Ideas for how we plan to test our project in early and future stages
+
+Phase 1
+We brainstormed different ideas for the project based on the 4 categories as outlined.
+
+Phase 2
+We grouped any ideas together in subcategories to get us thinking of the different
+aspects of the project we would focus. We then added a bit more ideas now that we have some
+defined subcategories.
