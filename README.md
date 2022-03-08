@@ -27,6 +27,7 @@ These updates are to present our progress as we develop our project.
 [Vlog #2: design & planning](https://www.youtube.com/watch?v=yKmn17qdzSY) October 15, 2021<br>
 [Vlog #3: retrospective](https://youtu.be/LN2sBC2dZQ8) December 3, 2021<br>
 [Vlog #4: progress](https://youtu.be/JJY1kUnCGsw) Febuary 1, 2022<br>
+[Vlog #5: progress2](https://youtu.be/XM4R7v8yOKQ) March 8, 2022<br>
 
 ## Notes
 
