@@ -1,0 +1,9 @@
+#map{
+    background: purple;
+    width: 640px;
+    height: 480px;
+}
+
+.map-details{
+    background: red;
+}
