@@ -20,14 +20,9 @@ if(isset($_POST['upload'])){
             if ($fileSize < 1000000) {
                 $fileNameNew = uniqid('', true).".".$fileActualExt;
                 $fileDestination = 'RIDES/'.$fileNameNew;
-                if(move_uploaded_file($fileTmpName, $fileDestination)){
                 move_uploaded_file($fileTmpName, $fileDestination);
                 header("Location: testupload.php?uploadsuccess?$fileDestination");
-                }
-                else
-                {
-                    echo "wtf man";
-                }
+                
                 
                 
             } else {

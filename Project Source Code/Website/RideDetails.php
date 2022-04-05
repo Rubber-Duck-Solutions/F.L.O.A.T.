@@ -4,7 +4,7 @@ include './user_validation/login_validation.php'
 <!DOCTYPE html>
 <html  >
 <head>
-  <!-- Site made with Mobirise Website Builder v5.2.0, https://mobirise.com -->
+  
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="shortcut icon" href="assets/images/logo6.png" type="image/x-icon">
@@ -40,7 +40,7 @@ include './user_validation/login_validation.php'
                     nav__link--anchor
                     link__hover-effect
                     link__hover-effect--black
-                    "> Hi, <?= $_SESSION['uName']?></a>
+                    "> yuh Hi, <?= $_SESSION['uName']?></a>
                 </li>
                 <li>
                     <a href="RideList.php" class="
@@ -82,6 +82,7 @@ if ($row = $rideRow->fetch_assoc()){
     $rideEtime = $row["endTime"];
     $rideIdent = $row["rideID"];
     $rideDur = $row["duration"];
+    $rideInfo = $row["csv"];
 }
 ?>
         
@@ -154,7 +155,7 @@ if ($row = $rideRow->fetch_assoc()){
             
             var mapCoord = [];
 <?php
- if (($open = fopen("./RIDES/testmap.csv", "r")) !== FALSE) 
+ if (($open = fopen($rideInfo, "r")) !== FALSE) 
   {
      while(list($currentTime,$latitude,$longitude,$sensorReading) = 
              fgetcsv($open,1024,',')) { 
