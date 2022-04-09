@@ -12,6 +12,7 @@ nav {
 
 .nav__link--list {
     display: flex;
+    padding: 0;
 }
 
 .nav__link--anchor {

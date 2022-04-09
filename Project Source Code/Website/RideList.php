@@ -1,6 +1,16 @@
 <?php
+
 include './user_validation/login_validation.php'
+
 ?>
+ <?php
+ if (isset($_POST['viewRide'])){
+     $_SESSION["rideID"] =$_POST["rideID"];
+     header("location: RideDetails.php");
+     $link->close();
+     exit();
+ }
+ ?>
 <!DOCTYPE html>
 <html  >
 <head>
@@ -61,7 +71,7 @@ include './user_validation/login_validation.php'
 $link = mysqli_connect($dbhost, $dbuser, $dbpass) or die("Unable to Connect to '$dbhost'");
 mysqli_select_db($link, $dbname) or die("Could not open the db '$dbname'");
 
-$rideQuery = "SELECT * FROM `rideCatalog`";
+$rideQuery = "SELECT * FROM `rideCatalog` ORDER BY rideDate DESC";
 $rideRow = $link->query($rideQuery);
 ?>
 <?php
@@ -91,16 +101,10 @@ while ($row = $rideRow->fetch_assoc()){
             </div>
         </div>
     </div>
- <?php
- if (isset($_POST['viewRide'])){
-     $_SESSION["rideID"] =$_POST["rideID"];
-     header("location: RideDetails.php");
-     $link->close();
-     exit();
- }
- ?>
+
  <?php
 }
+
 ?>
 </section>
    
