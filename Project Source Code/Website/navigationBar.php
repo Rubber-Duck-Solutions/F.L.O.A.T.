@@ -19,6 +19,20 @@ include './user_validation/login_validation.php'
                     "> Home</a>
                 </li>
                 <li>
+                    <a href="RideRegister.php" class="
+                    nav__link--anchor
+                    link__hover-effect
+                    link__hover-effect--black
+                    "> Register Ride</a>
+                </li>
+                <li>
+                    <a href="About.php" class="
+                    nav__link--anchor
+                    link__hover-effect
+                    link__hover-effect--black
+                    "> About</a>
+                </li>
+                <li>
                     <a href="logout.php" class="
                     nav__link--anchor
                     nav__link--anchor--primary

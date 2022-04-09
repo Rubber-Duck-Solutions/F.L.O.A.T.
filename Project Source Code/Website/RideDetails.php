@@ -1,120 +1,96 @@
 <?php
-include './user_validation/login_validation.php'
+include './user_validation/login_validation.php';
 ?>
 <!DOCTYPE html>
 <html  >
 <head>
+  <?php    include './head.php'; ?>
   
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="shortcut icon" href="assets/images/logo6.png" type="image/x-icon">
-  <meta name="description" content="">
-  
-  
-  <title>Ride Details</title>
-  <link rel="stylesheet" href="assets/tether/tether.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="assets/socicon/css/styles.css">
-  <link rel="stylesheet" href="assets/theme/css/style.css">
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
   
   <link rel="stylesheet" href="./assets/styles/rideDetails.css">
-  <link rel="stylesheet" href="./navStyles.css">
-  
+  <title>Ride Details</title>
   <link rel="stylesheet" href="./assets/leaflet/leaflet.css"/>
   <script src="./assets/leaflet/leaflet.js"></script>
-  <!-- comment <link rel="stylesheet" href="./newride.css"> -->
+  
   
   
 </head>
 <body>
-  
-    <nav>
-            <div class="personal__logo">F.L.O.A.T.</div>
-            <ul class="nav__link--list">
-                <li>
-                    <a href="rideList.php" class="
-                    nav__link--anchor
-                    link__hover-effect
-                    link__hover-effect--black
-                    "> yuh Hi, <?= $_SESSION['uName']?></a>
-                </li>
-                <li>
-                    <a href="RideList.php" class="
-                    nav__link--anchor
-                    link__hover-effect
-                    link__hover-effect--black
-                    "> Home</a>
-                </li>
-                <li>
-                    <a href="logout.php" class="
-                    nav__link--anchor
-                    nav__link--anchor--primary
-                    ">Log Out</a>
-                </li>
-            </ul>
-        </nav>
-
-
-    <?php
-    $dbname = 'boatRides';
-    $dbuser = 'root';
-    $dbpass = 'DQtLufu3aXfD';
-    $dbhost = 'localhost';
+    <?php    
+    include './navigationBar.php';
+    include './databaseRidesConnect.php';
     
     $rideID = $_SESSION['rideID'];
-
-$link = mysqli_connect($dbhost, $dbuser, $dbpass) or die("Unable to Connect to '$dbhost'");
-mysqli_select_db($link, $dbname) or die("Could not open the db '$dbname'");
-
-$rideQuery = "SELECT * FROM `rideCatalog` WHERE rideID= '$rideID'";
-$rideRow = $link->query($rideQuery);
-?>
+    $rideQuery = "SELECT * FROM `rideCatalog` WHERE rideID= '$rideID'";
+    $rideRow = $link->query($rideQuery);
+    
+        if ($row = $rideRow->fetch_assoc()){
+            $rideLocation = $row["location"];
+            $rideDate = $row["rideDate"];
+            $rideStime = $row["startTime"];
+            $rideEtime = $row["endTime"];
+            $rideIdent = $row["rideID"];
+            $rideDur = $row["duration"];
+            $rideInfo = $row["csv"];
+            $rideUser =  $row["registeredByID"];
+        }
         
-<?php
-if ($row = $rideRow->fetch_assoc()){
-    $rideLocation = $row["location"];
-    $rideDate = $row["rideDate"];
-    $rideStime = $row["startTime"];
-    $rideEtime = $row["endTime"];
-    $rideIdent = $row["rideID"];
-    $rideDur = $row["duration"];
-    $rideInfo = $row["csv"];
-}
-?>
+    include './databaseUsersConnect.php';
+    $rideQuery = "SELECT username FROM `login_credentials` WHERE userID= '$rideUser';";
+    $rideRow = $link->query($rideQuery);
+        if ($row = $rideRow->fetch_assoc()){
+            $rideUser = $row["username"];
+        }
         
-<?php
-$rideQuery = "SELECT * FROM `rideLinks` WHERE rideID= '$rideID'";
-$rideRow = $link->query($rideQuery);
+        if (($open = fopen($rideInfo, "r")) !== FALSE) {
+            $rideNumReadings = 0;
+            $rideAvgTemp= 0;
+            $rideAvgHumid=0;
+            while(list($currentTime,$latitude,$longitude,$turbidity,$temperature,$humidity,$litterDetect,$litterType) = fgetcsv($open,1024,',')) {
+             
+                if($currentTime != 'Current Time'){
+                    $rideEntries["time"][$rideNumReadings] =$currentTime;
+                    $rideEntries["latitude"][$rideNumReadings] =(float)$latitude;
+                    $rideEntries["longitude"][$rideNumReadings] =(float)$longitude;
+                    $rideEntries["turbidity"][$rideNumReadings] =(float)$turbidity * 50;
+                    $rideEntries["temperature"][$rideNumReadings] =(float)$temperature;
+                    $rideEntries["humidity"][$rideNumReadings] =(float)$humidity;
+                    $rideEntries["litterDetect"][$rideNumReadings] =$litterDetect;
+                    $rideEntries["litterType"][$rideNumReadings] =$litterType;
+                    
+                    
+                    $rideAvgTemp += (float)$temperature;
+                    $rideAvgHumid += (float)$humidity;
+                    
+                    $rideNumReadings += 1;
+                }
+                
+                
+            }
+            
+            
+            $rideAvgTemp = $rideAvgTemp/$rideNumReadings;
+            $rideAvgHumid = $rideAvgHumid/$rideNumReadings;
+        }
+        
+        
+    ?>
+      
 
-if ($row = $rideRow->fetch_assoc()){
-    $ridemymaps = $row["mymaps"];
-    $ridecsv = $row["csvFile"];
-    
-}
-?>
-<section class="content4 cid-t07TarkQ53" id="content4-6">
-    
-    
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="title col-md-12 col-lg-10">
-                <h3 class="mbr-section-title mbr-fonts-style align-center mb-4 display-2"><strong>Summary of patrol</strong></h3>
+    <section class="content4 cid-t07TarkQ53" id="content4-6">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="title col-md-12 col-lg-10">
+                    <h3 class="mbr-section-title mbr-fonts-style align-center mb-4 display-2"><strong>Summary of patrol</strong></h3>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    
 
-<section class="content14 cid-t07YzbCA5o" id="content14-b">
-    
-    
-    
-    <div class="detail-container ">
-        
-            <div class="detail-item-column ">
+    <section class="container">
+        <div class="row justify-content-center mt-4">
+            <div class="detail-column-auto ">
                 <ul class="">
                     <li><strong>Location:</strong>
                         <br>
@@ -132,80 +108,124 @@ if ($row = $rideRow->fetch_assoc()){
                         <br>
                          <?=$rideDur?>
                     </li>
+                    <li><strong>Average Temperature:</strong>
+                        <br>
+                         <?=$rideAvgTemp?>
+                    </li>
+                    <li><strong>Average Relative Humidity:</strong>
+                        <br>
+                         <?=$rideAvgHumid?>
+                    </li>
+                    <li><strong>Registered By:</strong>
+                        <br>
+                         <?=$rideUser?>
+                        
+                    </li>
+                    <li>
+                        <br>
+                        <a href="<?=$rideInfo?>">Get Full details</a>
+                    </li>
+                    
                 </ul>
-                
             </div>
-            <div class="detail-item">
-                
+            
+            
+            <div class="detail-item">    
                 <div id="map">
-                    <p>yeah</p>
                 </div>
                 
                 <script>
-            var map = L.map('map').setView([50.436, -104.547], 13);
+                    var map = L.map('map').setView([<?=$rideEntries["latitude"][0]?>, <?=$rideEntries["longitude"][0]?>], 15);
              
-             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox/satellite-streets-v11',
-            tileSize: 512,
-            zoomOffset: -1,
-            accessToken: 'pk.eyJ1Ijoiam9uYmFydmFyZ2FzIiwiYSI6ImNsMHZmMHozazAyNWwzZXRjcW9wbWYzNGEifQ.LZ0UffVHXIPFBIAh7_-DaA'
-            }).addTo(map);
+                    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                        maxZoom: 20,
+                        id: 'mapbox/satellite-streets-v11',
+                        tileSize: 512,
+                        zoomOffset: -1,
+                        accessToken: 'pk.eyJ1Ijoiam9uYmFydmFyZ2FzIiwiYSI6ImNsMHZmMHozazAyNWwzZXRjcW9wbWYzNGEifQ.LZ0UffVHXIPFBIAh7_-DaA'
+                    }).addTo(map);
             
-            var mapCoord = [];
-<?php
- if (($open = fopen($rideInfo, "r")) !== FALSE) 
-  {
-     while(list($currentTime,$latitude,$longitude,$sensorReading) = 
-             fgetcsv($open,1024,',')) { 
-         if($currentTime != 'Current Time'){
-         $latitude =(float)$latitude;
-         $longitude =(float)$longitude;
-         $sensorReading =(float)$sensorReading;
-        if($sensorReading > 0.0){
-         
-         
-            
-?>
-        var marker = L.marker([<?=$latitude?>, <?=$longitude?>]);
-        var circle = L.circle([<?=$latitude?>, <?=$longitude?>], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.1,
-        radius: 30
-        }).addTo(map);
-        marker.bindPopup("<b>Turbidity warning</b>\n\
-                          <br>Time taken: <?=$currentTime?>\n\
-                          <br>Latitude: <?=$latitude?>\n\
-                          <br>Longitude: <?=$longitude?>\n\
-                          <br>Turbidity: <?=$sensorReading?> NTU").openPopup();
-        marker.addTo(map);
-        
- <?php
-         }
- ?>
-    mapCoord.push([<?=$latitude?>, <?=$longitude?>]);
-
- 
-<?php
-         }
-             }
-  }
- 
-?>
-        var polygon = L.polyline(mapCoord, {fill: false});
-    polygon.addTo(map);
-        </script>
-                <iframe src="<?=$ridemymaps?>" width="640" height="480"></iframe>
-                <iframe src="<?=$ridecsv?>" width="640" height="480"></iframe>
+                    var mapCoord = [];
+                </script>
                 
-            </div>
+                <?php
+                    for ($index = 0; $index < $rideNumReadings; $index++){
+                        $warningMessage ="";
+                        $warningVal = 0;
+                        $rideLitter ="";
+                        
+                ?>
+                        <script>mapCoord.push([<?=$rideEntries["latitude"][$index]?>, <?=$rideEntries["longitude"][$index]?>]);</script>
+                <?php
+                
+                        if ($rideEntries["turbidity"][$index] > 50.0){
+                            $warningMessage = $warningMessage."<b>Turbidity warning</b><br>";
+                            $warningVal += 1;
+                ?>
+                            <script>
+                                
+                                var circle = L.circle([<?=$rideEntries["latitude"][$index]?>, <?=$rideEntries["longitude"][$index]?>], {
+                                    color: 'blue',
+                                    fillColor: '#f03',
+                                    fillOpacity: 0.1,
+                                    radius: 30
+                                }).addTo(map);
+                                
+                            </script>
+                <?php  
+                        }
+                        
+                        if($rideEntries["litterDetect"][$index] == 1){
+                            $warningMessage = $warningMessage."<b>Litter detected</b><br>";
+                            $warningVal += 1;
+                ?>
+                            
+                            <script>
+                                
+                                var circle = L.circle([<?=$rideEntries["latitude"][$index]?>, <?=$rideEntries["longitude"][$index]?>], {
+                                    color: 'red',
+                                    fillColor: '#f03',
+                                    fillOpacity: 0.1,
+                                    radius: 50
+                                }).addTo(map);
+                                
+                            </script>
+                            
+                 <?php       
+                        }
+                        
+                        if($warningVal > 0){     
+                ?>
+                        <script>
+                            var marker = L.marker([<?=$rideEntries["latitude"][$index]?>, <?=$rideEntries["longitude"][$index]?>]);
+                            marker.bindPopup("<?=$warningMessage?>\n\
+                                    <br>Time taken: <?=$rideEntries["time"][$index]?>\n\
+                                    <br>Latitude: <?=$rideEntries["latitude"][$index]?>\n\
+                                    <br>Longitude: <?=$rideEntries["longitude"][$index]?>\n\
+                                    <br>Turbidity: <?=$rideEntries["turbidity"][$index]?> NTU\n\
+                                    <br>Temperature: <?=$rideEntries["temperature"][$index]?>C\n\
+                                    <br>Humidity: <?=$rideEntries["humidity"][$index]?>%\n\
+                                    <br>Litter found: <?=$rideEntries["litterType"][$index]?> \n\
+                                    ").openPopup();
+    
+                            marker.addTo(map);
+                        </script>
+                <?php
+                        }
+                    }
+                ?>
+                            
+                            
+                            
+                <script>
+                    var polygon = L.polyline(mapCoord, {fill: false});
+                    polygon.addTo(map);
+                </script>
+                
+          </div>
             
         
     </div>
-        
-
-  
 </body>
 </html>

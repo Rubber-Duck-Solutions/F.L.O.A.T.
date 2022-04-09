@@ -1,0 +1,46 @@
+
+.detail-container {
+    display: flex;
+    justify-content: center;
+}
+.deatil-row {
+   display: flex;
+}
+
+
+.detail-column {
+  flex: auto;
+  padding: 5px;
+}
+
+.detail-item {
+  justify-content: center;
+  flex-basis: 640px;
+  
+  margin: 5px;
+}
+
+.detail-column-auto {
+  justify-content: center;
+  flex-basis: 200px;
+  flex-grow: 1;
+  
+  margin: 5px;
+}
+.detail-item-column {
+  justify-content: center;
+  flex-basis: 200px;
+  
+  margin: 5px;
+}
+.section-break {
+    padding: 10px;
+}
+
+#map{
+    background: purple;
+    width: 640px;
+    height: 480px;
+}
+
+
