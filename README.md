@@ -45,12 +45,11 @@ These updates are to present our progress as we develop our project.
 ## Key Documents
 Document | Description
 ---------- | ----------
-[Hi-fidelity Prototype]() | Our first draw up of this project created in adobe XD
-[User story map]() | A chart on how we envision our system is going to be used by our target customer (Government Officials)
-[Python code review by Carter Brezinski]() | Code review of algorithm
-[Website code review by Jonathan Vargas]() | Code review of front end and backend code
-[Project final report out] | Report of project performance
-[After action / Lessons learned]() | Document highlighting our personal experience with this project
+[Hi-fidelity Prototype](https://github.com/Rubber-Duck-Solutions/F.L.O.A.T./blob/fa6db6ba1401c5eeb85b9f2dbfc8ac54e8771971/Project%20Documents/Project%20definition%20diagrams/FLOAT_HiFi-Prototype_Oct29-2021.pdf) | Our first draw up of this project created in adobe XD
+[User story map](https://github.com/Rubber-Duck-Solutions/F.L.O.A.T./blob/fa6db6ba1401c5eeb85b9f2dbfc8ac54e8771971/Project%20Documents/Project%20definition%20diagrams/FLOAT_UserStoryMapFramework_Apr14-2022.pdf) | A chart on how we envision our system is going to be used by our target customer (Government Officials)
+[Python code review by Carter Brezinski](https://github.com/Rubber-Duck-Solutions/F.L.O.A.T./blob/fa6db6ba1401c5eeb85b9f2dbfc8ac54e8771971/Project%20Experience/FLOAT_Python-RaspberryPi-Code-Review_Apr14-2022.pdf) | Code review of algorithm
+[Website code review by Jonathan Vargas](https://github.com/Rubber-Duck-Solutions/F.L.O.A.T./blob/fa6db6ba1401c5eeb85b9f2dbfc8ac54e8771971/Project%20Experience/FLOAT_Webserver-Code-Review_Apr14-2022.pdf) | Code review of front end and backend code
+[After action / Lessons learned](https://github.com/Rubber-Duck-Solutions/F.L.O.A.T./blob/fa6db6ba1401c5eeb85b9f2dbfc8ac54e8771971/Project%20Experience/FLOAT_After-Action-Review_Apr14-2022.pdf) | Document highlighting our personal experience with this project
 
 
 
