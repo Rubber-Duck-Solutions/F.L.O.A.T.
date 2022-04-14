@@ -23,8 +23,6 @@ Our system automates collection of data and provides a clear view on water quali
 [![F.L.O.A.T. commercial](https://res.cloudinary.com/marcomontalbano/image/upload/v1649906462/video_to_markdown/images/youtube--3uLD5KyVslQ-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/3uLD5KyVslQ "F.L.O.A.T. commercial")
 
 
-Media Documentation/Poster/FLOAT_ProjectPoster_Apr1-2022.png
-
 ## Members:
 * Carter Brezinski
   * AI lead
