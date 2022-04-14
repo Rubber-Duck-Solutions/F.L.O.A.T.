@@ -31,7 +31,6 @@ Our system automates collection of data and provides a clear view on water quali
   * Project manager
   * Full stack developer 
 
-[link to image](./Media Documentation/Poster)
 
 ## Video updates 
 These updates are to present our progress as we develop our project. 
