@@ -1,23 +1,39 @@
 # F.L.O.A.T.
-Finding. Littered. Objects. Automated. Technology.
+Facilitating. Level. Objectives. Assessment. Technology.
+
 
 ## Table of contents
 * [General](#general)
 * [Members](#members)
 * [Video updates](#video-updates)
+* [Key Documents](#key-documents)
 * [Notes](#notes)
 * [Credits](#credits)
 
 ## General
-Welcome to F.L.O.A.T. an image recognition AI system that detects litter below the surface of water.
+Welcome to F.L.O.A.T. an A.I. driven detection system to collect water parameters.
+<br>
+> We have developed a system that captures and logs water parameters along with any foreign objects.
+Our system automates collection of data and provides a clear view on water quality on any body of water.
+
+**Project Poster**
+[![FLOAT poster](https://github.com/Rubber-Duck-Solutions/F.L.O.A.T./blob/1fb13c1940ad2d8b609d169de87a9829f4dc75ea/Media%20Documentation/Poster/FLOAT_ProjectPoster_Apr1-2022.png)](./Media%20Documentation/Poster)
+
+**Project Commercial**
+[![F.L.O.A.T. commercial](https://res.cloudinary.com/marcomontalbano/image/upload/v1649906462/video_to_markdown/images/youtube--3uLD5KyVslQ-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/3uLD5KyVslQ "F.L.O.A.T. commercial")
+
+
+Media Documentation/Poster/FLOAT_ProjectPoster_Apr1-2022.png
 
 ## Members:
 * Carter Brezinski
   * AI lead
-  * Front end lead 
+  * Electronics lead 
 * Jonathan Vargas
   * Project manager
-  * Front end lead
+  * Full stack developer 
+
+[link to image](./Media Documentation/Poster)
 
 ## Video updates 
 These updates are to present our progress as we develop our project. 
@@ -29,7 +45,33 @@ These updates are to present our progress as we develop our project.
 [Vlog #4: progress](https://youtu.be/JJY1kUnCGsw) Febuary 1, 2022<br>
 [Vlog #5: progress2](https://youtu.be/XM4R7v8yOKQ) March 8, 2022<br>
 
+## Key Documents
+Document | Description
+---------- | ----------
+[Hi-fidelity Prototype]() | Our first draw up of this project created in adobe XD
+[User story map]() | A chart on how we envision our system is going to be used by our target customer (Government Officials)
+[Python code review by Carter Brezinski]() | Code review of algorithm
+[Website code review by Jonathan Vargas]() | Code review of front end and backend code
+[Project final report out] | Report of project performance
+[After action / Lessons learned]() | Document highlighting our personal experience with this project
+
+
+
 ## Notes
+April 9, 2022: project presentation on basic water quality detection, first iteration of algorithm, and first version of web client 
 
 ## Credits
-All credited and outsourced materials will be acknowledged here
+Resources used:
+1. Alexey Bochvosky (Oct 2021) Darknet https://tinyurl.com/43y9m838
+2. Google open images: https://tinyurl.com/4k9xca2m
+3. Saskatchewan water quality search: https://tinyurl.com/ytc75djh
+4. Guidelines for Canadian Recreational Water Quality Third Edition (Aug 2012) https://tinyurl.com/2862e4f8
+
+Acknowledgements:
+<br>
+We would like to thank the following people that provided input and guidance during the process of this project.
+* Christine Chan
+* Timothy Maciag
+* Ben Lichtenwald
+* Matthew Palmarin
+* Dylan Rush
